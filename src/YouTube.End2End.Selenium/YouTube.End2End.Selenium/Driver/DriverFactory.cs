@@ -9,7 +9,7 @@ namespace YouTube.End2End.Selenium.Driver
 {
     internal class DriverFactory
     {
-        internal static IWebDriver Create(string browser)
+        internal static IWebDriver Create(string browser, string url)
         {
             IWebDriver driver;
 
@@ -33,7 +33,7 @@ namespace YouTube.End2End.Selenium.Driver
 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://www.youtube.com/");
+            driver.Navigate().GoToUrl(url);
 
             return driver;
         }
