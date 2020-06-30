@@ -25,8 +25,15 @@ namespace YouTube.End2End.Selenium.PageObjects
                 
 
             return availableTitlesElements.Any(t => t.Contains(title));
+         
+        }
+
+        internal void AccessFirstVideo()
+        {
+            driver.FindElements(By.ClassName("text-wrapper"))
+                .First()
+                .Click();
                 
-            
         }
     }
 }

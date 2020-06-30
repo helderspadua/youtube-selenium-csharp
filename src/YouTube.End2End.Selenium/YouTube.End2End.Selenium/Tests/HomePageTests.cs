@@ -25,19 +25,20 @@ namespace YouTube.End2End.Selenium.Tests
         [Test]
         [TestCase("Chrome")]
         //[TestCase("Firefox")]
-        [TestCase("edge")]
+        //[TestCase("edge")]
         // given I am at the youtube home page
         // when I search for a title
         // then should see videos related to the title
         public void WhenSearchinForATitleShouldReturnAnyVideoRelated(string browser)
         {
-            this.driver = DriverFactory.Create(browser);
+            this.driver = DriverFactory.Create(browser, "https://www.youtube.com/");
 
             HomePage homePage = new HomePage(driver);
             homePage.SearchTitle("Tibia");
 
             SearchPage searchPage = new SearchPage(driver);
             searchPage.HasAvailableTitles("Tibia").Should().BeTrue();
+
 
         }
 
