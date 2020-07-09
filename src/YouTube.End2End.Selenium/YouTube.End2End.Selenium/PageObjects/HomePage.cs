@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace YouTube.End2End.Selenium.PageObjects
@@ -28,6 +29,22 @@ namespace YouTube.End2End.Selenium.PageObjects
 
         }
 
+        internal void ClickSignIn()
+        {
+            driver.FindElements(By.TagName("a"))
+            .First(a => (a.GetAttribute("href") ?? "").Contains("accounts.google.com"))
+            .Click();
+        
+        }
 
+        internal bool HasAvatarButton()
+        {
+            return driver.FindElements(By.Id("avatar-btn")).Any();
+        }
+
+        internal bool HasNotificationButton()
+        {
+            return driver.FindElements(By.TagName("ytd-notification-topbar-button-renderer")).Any();
+        }
     }
 }

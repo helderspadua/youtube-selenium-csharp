@@ -41,6 +41,21 @@ namespace YouTube.End2End.Selenium.Tests
 
 
         }
+        [Test]
+        [TestCase("Chrome")]
+        public void WhenIamSignedInShouldSeeLoggedUser(string browser) {
+            this.driver = DriverFactory.Create(browser, "https://www.youtube.com/");
+            
+            HomePage homePage = new HomePage(driver);
+            homePage.ClickSignIn();
+
+            GoogleSignInPage googleSignInPage = new GoogleSignInPage(driver);
+            googleSignInPage.SignIn("helder.qa.testing@gmail.com", "Test123!");
+
+            homePage.HasAvatarButton().Should().BeTrue();
+            homePage.HasNotificationButton().Should().BeTrue();
+
+        }
 
         [TearDown]
         public void TearDown()
